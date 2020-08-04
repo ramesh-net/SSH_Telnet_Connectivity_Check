@@ -4,7 +4,7 @@ import telnetlib
 from netmiko.ssh_exception import SSHException
 from pythonping import ping
 
-device_list=('192.168.122.81', '192.168.122.82', '192.168.122.83' , '192.168.122.84', '192.168.122.85','192.168.122.86')
+device_list=open('mydevices.txt')
 telnet_device=[]
 ssh_device=[]
 unreachable_device=[]
@@ -12,17 +12,15 @@ ping_only=[]
 user = input("Enter username: ")
 password = getpass.getpass()
 
-iosv_l2 = {
+for device_ip in device_list:
+    device_ip=device_ip.strip()
+    iosv_l2 = {
     'device_type': 'cisco_ios',
-    'ip': '',
+    'ip': device_ip,
     'username': user,
     'password': password,
     'secret': password
-}
-
-
-for device_ip in device_list:
-    iosv_l2['ip']=device_ip
+    }
     print("Testing for IP:", iosv_l2['ip']) 
     try:      
         net_connect = ConnectHandler(**iosv_l2)
