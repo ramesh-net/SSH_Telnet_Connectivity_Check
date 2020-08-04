@@ -1,3 +1,5 @@
+# Below script will help you to test SSH, Telnet connectivity of any devices along with its rechability 
+
 from netmiko import ConnectHandler
 import getpass
 import telnetlib
