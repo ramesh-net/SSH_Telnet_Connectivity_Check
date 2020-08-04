@@ -56,6 +56,7 @@ for device_ip in device_list:
             print (e ,"\n\n*************************** End of Error Message *****************************\n")
               
     except Exception as e:
+        response_list = ping(iosv_l2['ip'], size=40, count=10)
         if response_list.success():
             ping_only.append(iosv_l2['ip'])
         else:
